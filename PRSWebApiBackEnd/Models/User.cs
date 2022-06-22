@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace PRSWebApiBackEnd.Models
 {
@@ -30,5 +31,9 @@ namespace PRSWebApiBackEnd.Models
         
         public bool IsReviewer { get; set; }
         public bool IsAdmin { get; set; }
+        
+        [JsonIgnore] 
+        public List<Requests>? Requests { get; set; } 
+
     }
 }

@@ -20,8 +20,25 @@ namespace PRSWebApiBackEnd.Controllers
             _context = context;
         }
 
+        //gets username and password of a user
+        [HttpGet("{username}/{password}")]
+        public async Task<ActionResult<User>> GetUserLogin(string username, string password)
+        {
+            var user = await _context.Users
+                .Where(u => u.Username == username && u.Password == password)
+                .FirstOrDefaultAsync();
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return user; 
+            }
+
+
+
+
         // GET: api/Users
-        [HttpGet]
+                    [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
           if (_context.Users == null)

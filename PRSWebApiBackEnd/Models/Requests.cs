@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace PRSWebApiBackEnd.Models
 {
@@ -20,13 +21,19 @@ namespace PRSWebApiBackEnd.Models
         public decimal Total { get; set; }
 
         [StringLength(10)]
-        public string Status { get; set; }
-        
+        public string Status { get; set; } = "NEW";
+
         [StringLength(20)]
-        public string DeliveryMode { get; set; }
+        public string DeliveryMode { get; set; } = "Pickup";
 
         [StringLength(80)]
         public string? RejectionReason { get; set; }
         public int UserId { get; set; }
+        
+        [JsonIgnore] 
+        public User? User { get; set; }
+
+        [JsonIgnore]
+        public List<RequestsLine>? RequestsLines { get; set; }
     }
 }

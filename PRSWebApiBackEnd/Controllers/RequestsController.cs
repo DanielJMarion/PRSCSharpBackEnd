@@ -20,9 +20,20 @@ namespace PRSWebApiBackEnd.Controllers
             _context = context;
         }
 
+        //lists requests in review but not the ones in review made by the request reviewer
+        [HttpGet("Review/{id}")]
+        public async Task<ActionResult<IEnumerable<Requests>>> GetRequestsForReview(int id)
+        { 
+            if (_context.Requests == null)
+            {
+                return NotFound();
+            }
+            return await _context.Requests.Where(r => r.Status == "REVIEW" && r.UserId != id).ToListAsync();
+
+        }
         // GET: api/Requests
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Requests>>> GetRequests()
+        [HttpGet ("Request")]
+        public async Task<ActionResult<IEnumerable<Requests>>> GetRequest(int id)
         {
           if (_context.Requests == null)
           {
@@ -47,6 +58,59 @@ namespace PRSWebApiBackEnd.Controllers
             }
 
             return requests;
+        }
+
+        //shows request in review status //50 DOLLARS OR LESS
+        [HttpPut("{id}/REVIEW")]
+        public async Task<IActionResult> Reviews(int id)
+        {
+
+            var request = await _context.Requests.FindAsync(id); 
+
+            if (request == null)
+            {
+                return NotFound();
+            } 
+            if (request.Total <= 50)
+            {
+                request.Status = "APPROVED"; 
+
+            } 
+            else
+            {
+                request.Status = "REVIEW";
+            }
+            _context.SaveChanges();
+            return NoContent();
+    }
+        //shows requests in approved status
+        [HttpPut("{id}/APPROVE")]
+        public async Task<IActionResult> Approve(int id)
+        {
+
+            var request = await _context.Requests.FindAsync(id);
+            if (request == null)
+            {
+                return NotFound();
+            }
+            request.Status = "APPROVED";
+            _context.SaveChanges();
+            return NoContent();
+        }
+
+        //shows review set to rejected status
+        [HttpPut("{id}/REJECT")]
+        public async Task<IActionResult> Reject(int id)
+        {
+
+            var request = await _context.Requests.FindAsync(id);
+            if (request == null)
+            {
+                return NotFound();
+            }
+            request.Status = "REJECTED";
+            _context.SaveChanges();
+            return NoContent();
         }
 
         // PUT: api/Requests/5

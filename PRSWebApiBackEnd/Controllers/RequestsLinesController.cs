@@ -9,7 +9,7 @@ using PRSWebApiBackEnd.Models;
 
 namespace PRSWebApiBackEnd.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/RequestLines")]
     [ApiController]
     public class RequestsLinesController : ControllerBase
     {
@@ -76,7 +76,7 @@ namespace PRSWebApiBackEnd.Controllers
                     throw;
                 }
             }
-
+            RecalculateRequestTotal(requestsLine.RequestId);
             return NoContent();
         }
 
@@ -91,6 +91,8 @@ namespace PRSWebApiBackEnd.Controllers
           }
             _context.RequestsLine.Add(requestsLine);
             await _context.SaveChangesAsync();
+
+            RecalculateRequestTotal(requestsLine.RequestId);
 
             return CreatedAtAction("GetRequestsLine", new { id = requestsLine.Id }, requestsLine);
         }
@@ -108,16 +110,41 @@ namespace PRSWebApiBackEnd.Controllers
             {
                 return NotFound();
             }
-
+            int requestid = requestsLine.RequestId;
             _context.RequestsLine.Remove(requestsLine);
             await _context.SaveChangesAsync();
-
+            RecalculateRequestTotal(requestid);
             return NoContent();
         }
-
+        ////Recals total in requests whenever an insert, update, or
+        ////delete occurs modifier is set to private for security cannot be called out of Requestlines
+     
         private bool RequestsLineExists(int id)
         {
             return (_context.RequestsLine?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+            private void RecalculateRequestTotal(int requestId)
+        {
+            
+            decimal total = _context.RequestsLine   
+                .Include(r => r.Requests)
+                .Where(r => r.RequestId== requestId)
+                .Sum(r=> r.Product.Price*r.Quantity);
+            
+            var request =  _context.Requests.FirstOrDefault(r=> r.Id== requestId); 
+            if (request == null)
+            {
+                BadRequest();
+            }
+            
+            request.Total=total;
+            _context.SaveChanges();
+
+
+        }
+    
+    
     }
+
+
 }

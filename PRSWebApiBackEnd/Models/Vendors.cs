@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace PRSWebApiBackEnd.Models
 {
@@ -33,5 +34,8 @@ namespace PRSWebApiBackEnd.Models
 
         [StringLength(255)]
         public string? Email { get; set; }
+
+        [JsonIgnore] 
+        public List<Products>? Products { get; set; }
     }
 }

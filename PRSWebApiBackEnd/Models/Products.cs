@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace PRSWebApiBackEnd.Models
 {
@@ -26,5 +27,11 @@ namespace PRSWebApiBackEnd.Models
         [StringLength(255)]
         public string? PhotoPath { get; set; }
         public int VendorId { get; set; }
+
+        [JsonIgnore] 
+        public List<RequestsLine>? RequestsLines { get; set; }
+
+        [JsonIgnore] 
+        public Vendors? Vendor { get; set; }
     }
 }
