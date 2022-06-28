@@ -2,7 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\PRSWebApiBackEnd",
-    "\\PRSWebApiBackEnd\\Controllers"
+    "\\PRSWebApiBackEnd\\Controllers",
+    "\\PRSWebApiBackEnd\\Models"
   ],
   "SelectedNode": "\\PRSWebApiBackEnd\\Controllers\\RequestsController.cs",
   "PreviewInSolutionExplorer": false

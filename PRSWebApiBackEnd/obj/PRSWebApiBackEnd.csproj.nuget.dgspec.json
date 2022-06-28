@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\DanielJMarion\\PRS\\PRSWebApiBackEnd\\PRSWebApiBackEnd.csproj": {}
+    "C:\\Users\\User\\Source\\Repos\\DanielJMarion\\PRS\\PRSWebApiBackEnd\\PRSWebApiBackEnd.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\DanielJMarion\\PRS\\PRSWebApiBackEnd\\PRSWebApiBackEnd.csproj": {
+    "C:\\Users\\User\\Source\\Repos\\DanielJMarion\\PRS\\PRSWebApiBackEnd\\PRSWebApiBackEnd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\DanielJMarion\\PRS\\PRSWebApiBackEnd\\PRSWebApiBackEnd.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\DanielJMarion\\PRS\\PRSWebApiBackEnd\\PRSWebApiBackEnd.csproj",
         "projectName": "PRSWebApiBackEnd",
-        "projectPath": "C:\\Users\\User\\source\\repos\\DanielJMarion\\PRS\\PRSWebApiBackEnd\\PRSWebApiBackEnd.csproj",
+        "projectPath": "C:\\Users\\User\\Source\\Repos\\DanielJMarion\\PRS\\PRSWebApiBackEnd\\PRSWebApiBackEnd.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\DanielJMarion\\PRS\\PRSWebApiBackEnd\\obj\\",
+        "outputPath": "C:\\Users\\User\\Source\\Repos\\DanielJMarion\\PRS\\PRSWebApiBackEnd\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
